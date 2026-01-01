@@ -1,13 +1,17 @@
 const express = require("express");
 const path = require("path");
+
 const app = express();
+
+const connectDB = require("./server/config/db.js");
 
 const PORT = process.env.PORT || 4000
 
 app.use(express.static(path.join(__dirname, "public")));
 
 const server = app.listen(PORT, ()=>{
-    console.log(`💬 Server on port ${PORT}`)
+    console.log(`💬 Server on port ${PORT}`);
+    connectDB();
 });
 
 let socketsConnected = new Set();
